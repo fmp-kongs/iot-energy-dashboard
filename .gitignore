@@ -1,0 +1,49 @@
+## Ignore build outputs
+bin/
+obj/
+out/
+
+## Ignore user-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Ignore IDE files
+.vscode/
+.idea/
+
+## Ignore OS files
+.DS_Store
+Thumbs.db
+
+## Ignore Visual Studio generated files
+*.vs/
+*.ncrunchsolution
+*.ncrunchproject
+
+## Logs
+*.log
+
+## Secrets / configs (don’t commit real secrets)
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## Python (for simulator/ML scripts)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.venv/
+env/
+venv/
+
+## Jupyter notebooks checkpoints (if ML work)
+.ipynb_checkpoints
+
+## Docker (when you add later)
+*.pid
+.env
