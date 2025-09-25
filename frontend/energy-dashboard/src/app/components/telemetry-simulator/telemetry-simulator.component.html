@@ -1,0 +1,30 @@
+<div class="simulator-container">
+  <h2>Telemetry Simulator</h2>
+
+  <button (click)="startSimulation()" [disabled]="isRunning">Start Simulation</button>
+  <button (click)="stopSimulation()" [disabled]="!isRunning">Stop Simulation</button>
+
+  <h3>Live Data</h3>
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Device ID</th>
+            <th>Voltage (V)</th>
+            <th>Current (A)</th>
+            <th>Power (W)</th>
+            <th>Energy (kWh)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let entry of telemetryLog">
+            <td>{{ entry.timestamp | date:'medium' }}</td>
+            <td>{{ entry.deviceIdentifier }}</td>
+            <td>{{ entry.voltage | number:'1.2-2'}}</td>
+            <td>{{ entry.current | number:'1.2-2'}}</td>
+            <td>{{ entry.power | number:'1.2-2'}}</td>
+            <td>{{ entry.energy | number:'1.2-2'}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,54 @@
+.simulator-container {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.simulator-header {
+  font-size: 1.5em;
+  margin-bottom: 12px;
+  color: #333;
+}
+.simulator-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.simulator-controls button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.simulator-controls button:hover {
+  background-color: #0056b3;
+}
+.simulator-status {
+  margin-bottom: 16px;
+  font-weight: bold;
+  color: #555;
+}
+.telemetry-log {
+  max-height: 200px;
+  overflow-y: auto;
+  border-top: 1px solid #ccc;
+  padding-top: 8px;
+}
+.telemetry-log-entry {
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #444;
+  margin-bottom: 4px;
+}
+.telemetry-log-entry:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+.telemetry-log-entry:nth-child(even) {
+  background-color: #e9e9e9;
+}
+.telemetry-log-entry strong {
+  color: #000;
+}

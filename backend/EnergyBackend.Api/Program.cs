@@ -11,10 +11,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularCorsPolicy", policy =>
+    options.AddDefaultPolicy(policy =>
     {
-        //policy.WithOrigins("http://localhost:4200") // Angular dev server
-        policy.AllowAnyOrigin()
+        policy
+          .AllowAnyOrigin()
           .AllowAnyHeader()
           .AllowAnyMethod();
     });
@@ -27,7 +27,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
-    return InfluxDBClientFactory.Create(config["InfluxDB:Url"], config["InfluxDB:Token"].ToCharArray());
+    var url = config["InfluxDB:Url"] ?? throw new InvalidOperationException("InfluxDB URL is missing in configuration");
+    var token = config["InfluxDB:Token"] ?? throw new InvalidOperationException("InfluxDB Token is missing in configuration");
+    return new InfluxDBClient(url, token);
 });
 builder.Services.AddSingleton<InfluxDbService>();
 
@@ -35,6 +37,7 @@ builder.Services.AddSingleton<InfluxDbService>();
 
 var app = builder.Build();
 
+// Important: CORS middleware must be one of the first in the pipeline
 app.UseCors();
 
 // Configure the HTTP request pipeline.
@@ -65,6 +68,5 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 }
-
 
 app.Run();
