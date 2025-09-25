@@ -14,15 +14,11 @@ public class InfluxDbService
     private readonly string _influxDbBucket;
 
     // Constructor for dependency injection
-    public InfluxDbService(IConfiguration config)
+    public InfluxDbService(IConfiguration config, InfluxDBClient client)
     {
-        _influxDbUrl = config["InfluxDB:Url"];
-        _influxDbToken = config["InfluxDB:Token"];
+        _influxDbClient = client;
         _influxDbOrg = config["InfluxDB:Org"];
         _influxDbBucket = config["InfluxDB:Bucket"];
-
-        // Initialize the client
-        _influxDbClient = InfluxDBClientFactory.Create(_influxDbUrl, _influxDbToken.ToCharArray());
     }
 
     // Write a telemetry point to InfluxDB

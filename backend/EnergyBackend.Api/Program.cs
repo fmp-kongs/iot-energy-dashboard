@@ -1,6 +1,7 @@
 using EnergyBackend.Data;
 using EnergyBackend.Domain.Models;
 using EnergyBackend.Services;
+using InfluxDB.Client;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,15 +9,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularCorsPolicy", policy =>
+    {
+        //policy.WithOrigins("http://localhost:4200") // Angular dev server
+        policy.AllowAnyOrigin()
+          .AllowAnyHeader()
+          .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    return InfluxDBClientFactory.Create(config["InfluxDB:Url"], config["InfluxDB:Token"].ToCharArray());
+});
 builder.Services.AddSingleton<InfluxDbService>();
 
 
 
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

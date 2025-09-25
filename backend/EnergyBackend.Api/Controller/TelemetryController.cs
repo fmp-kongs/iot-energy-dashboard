@@ -36,10 +36,10 @@ public class TelemetryController(InfluxDbService influxDbService) : ControllerBa
         {
             DeviceIdentifier = "test-device-001",
             Timestamp = DateTime.UtcNow,
-            Voltage = 230.0,
+            Voltage = 290.0,
             Current = 5.0,
-            Power = 1150.0,
-            Energy = 0.0
+            Power = 1350.0,
+            Energy = 90.0
         };
         await _influxDbService.WriteTelemetryAsync(
             testTelemetry.DeviceIdentifier,

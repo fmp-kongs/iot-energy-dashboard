@@ -1,0 +1,9 @@
+<h2 class="text-xl font-bold mb-4">Send Telemetry</h2>
+<form (ngSubmit)="send()" #telemetryForm="ngForm" class="flex flex-col gap-2 w-80">
+    <input type="text" [(ngModel)]="deviceIdentifier" name="deviceIdentifier" placeholder="Device Identifier" required class="p-2 border rounded" />
+    <input type="number" [(ngModel)]="voltage" name="voltage" placeholder="Voltage" class="p-2 border rounded" />
+    <input type="number" [(ngModel)]="current" name="current" placeholder="Current" class="p-2 border rounded" />
+    <input type="number" [(ngModel)]="power" name="power" placeholder="Power" class="p-2 border rounded" />
+    <input type="number" [(ngModel)]="energy" name="energy" placeholder="Energy" class="p-2 border rounded" />
+    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Send</button>
+</form>
