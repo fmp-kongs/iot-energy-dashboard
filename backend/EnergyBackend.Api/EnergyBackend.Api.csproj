@@ -28,6 +28,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\EnergyBackend.Domain\EnergyBackend.Domain.csproj" />
 		<ProjectReference Include="..\EnergyBackend.Services\EnergyBackend.Services.csproj" />
+		<ProjectReference Include="..\EnergyBackend.Hubs\EnergyBackend.Hubs.csproj" />
 	</ItemGroup>
 
 </Project>

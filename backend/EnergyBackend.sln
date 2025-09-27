@@ -6,13 +6,19 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyBackend.Api", "EnergyBackend.Api\EnergyBackend.Api.csproj", "{1D4E39E8-EE0D-44F7-8613-946711830BBA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E2A3AE46-C927-4692-BFF9-29C9EE765564} = {E2A3AE46-C927-4692-BFF9-29C9EE765564}
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3} = {F0D9A2FF-09CF-49CD-9939-7FF1677065B3}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyBackend.Domain", "EnergyBackend.Domain\EnergyBackend.Domain.csproj", "{4161E21D-ECD8-4B41-AB68-0212178443F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyBackend.Services", "EnergyBackend.Services\EnergyBackend.Services.csproj", "{7DA91A2F-6D21-4C46-B661-625617AC490A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3} = {F0D9A2FF-09CF-49CD-9939-7FF1677065B3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyBackend.Data", "EnergyBackend.Data\EnergyBackend.Data.csproj", "{E2A3AE46-C927-4692-BFF9-29C9EE765564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyBackend.Hubs", "EnergyBackend.Hubs\EnergyBackend.Hubs.csproj", "{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +78,18 @@ Global
 		{E2A3AE46-C927-4692-BFF9-29C9EE765564}.Release|x64.Build.0 = Release|Any CPU
 		{E2A3AE46-C927-4692-BFF9-29C9EE765564}.Release|x86.ActiveCfg = Release|Any CPU
 		{E2A3AE46-C927-4692-BFF9-29C9EE765564}.Release|x86.Build.0 = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|x64.Build.0 = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Debug|x86.Build.0 = Debug|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|x64.ActiveCfg = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|x64.Build.0 = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|x86.ActiveCfg = Release|Any CPU
+		{F0D9A2FF-09CF-49CD-9939-7FF1677065B3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

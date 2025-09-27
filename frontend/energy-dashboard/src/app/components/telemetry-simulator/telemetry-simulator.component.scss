@@ -1,54 +1,134 @@
-.simulator-container {
-  border: 1px solid #ccc;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-.simulator-header {
-  font-size: 1.5em;
-  margin-bottom: 12px;
-  color: #333;
-}
+// Simulator controls layout
 .simulator-controls {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
-.simulator-controls button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  transition: background-color 0.3s ease;
+.sim-btn {
+  min-width: 150px;
+  margin-right: 0.5rem;
 }
-.simulator-controls button:hover {
-  background-color: #0056b3;
-}
-.simulator-status {
-  margin-bottom: 16px;
-  font-weight: bold;
-  color: #555;
-}
-.telemetry-log {
-  max-height: 200px;
-  overflow-y: auto;
-  border-top: 1px solid #ccc;
-  padding-top: 8px;
-}
-.telemetry-log-entry {
-  font-family: monospace;
-  font-size: 0.9em;
+.data-points-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  font-size: 0.95rem;
   color: #444;
-  margin-bottom: 4px;
 }
-.telemetry-log-entry:nth-child(odd) {
-  background-color: #f1f1f1;
+.data-points-count {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-weight: bold;
 }
-.telemetry-log-entry:nth-child(even) {
-  background-color: #e9e9e9;
+// Button styles
+.btn-primary {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid #2563eb;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
-.telemetry-log-entry strong {
-  color: #000;
+
+.btn-primary:hover:not(.disabled) {
+  background: linear-gradient(to right, #1d4ed8, #1e40af);
+}
+
+.btn-secondary {
+  background: linear-gradient(to right, #4b5563, #374151);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover:not(.disabled) {
+  background: linear-gradient(to right, #374151, #1f2937);
+}
+
+.btn-primary.disabled,
+.btn-secondary.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #9ca3af;
+  border-color: #9ca3af;
+}
+
+// Table styles
+.table-header {
+  padding: 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-cell {
+  padding: 1.5rem;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: #111827;
+}
+
+.table-row:hover {
+  background-color: #eff6ff;
+  transition: background-color 0.15s ease;
+}
+
+.highlight-new {
+  background: linear-gradient(to right, #ecfdf5, transparent);
+  border-left: 4px solid #10b981;
+  animation: highlight 2s ease-in-out;
+}
+
+.device-badge {
+  background-color: #dbeafe;
+  color: #1e40af;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.value-normal {
+  color: #059669;
+}
+
+.value-warning {
+  color: #d97706;
+  font-weight: 700;
+}
+
+.value-danger {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+@keyframes highlight {
+  0% { 
+    background-color: rgba(34, 197, 94, 0.2); 
+  }
+  100% { 
+    background-color: transparent; 
+  }
 }

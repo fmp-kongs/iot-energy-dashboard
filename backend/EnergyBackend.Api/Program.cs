@@ -1,5 +1,6 @@
 using EnergyBackend.Data;
 using EnergyBackend.Domain.Models;
+using EnergyBackend.Hubs;
 using EnergyBackend.Services;
 using InfluxDB.Client;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,10 @@ builder.Services.AddSingleton(sp =>
     return new InfluxDBClient(url, token);
 });
 builder.Services.AddSingleton<InfluxDbService>();
+builder.Services.AddSingleton<MqttService>();
+builder.Services.AddSingleton<AiService>();
+builder.Services.AddSingleton<AlertService>();
+builder.Services.AddSignalR();
 
 
 
@@ -68,5 +73,22 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 }
+
+// MQTT Service start
+using(var scope = app.Services.CreateScope())
+{
+    var mqttService = scope.ServiceProvider.GetRequiredService<MqttService>();
+    await mqttService.ConnectAsync();
+
+    // Graceful shutdown
+    app.Lifetime.ApplicationStopping.Register(() =>
+    {
+        Console.WriteLine("App shutting down ? disconnecting MQTT...");
+        mqttService.DisconnectAsync().GetAwaiter().GetResult();
+    });
+}
+
+app.MapHub<AlertsHub>("/alertsHub");
+
 
 app.Run();

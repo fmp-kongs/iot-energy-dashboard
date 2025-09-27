@@ -1,0 +1,36 @@
+
+
+.simple-navbar {
+  background: #222;
+  color: #fff;
+  padding: 0.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.simple-navbar nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.simple-navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.simple-navbar a.active,
+.simple-navbar a:hover {
+  background: #444;
+}
+
+.main-content {
+  min-height: 100vh;
+  padding: 3.5rem 1rem 1rem 1rem;
+  background: #f8fafc;
+}

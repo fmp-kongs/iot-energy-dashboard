@@ -1,30 +1,96 @@
-<div class="simulator-container">
-  <h2>Telemetry Simulator</h2>
+<div class="p-6 max-w-7xl mx-auto">
+  <!-- Header Section -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+        <span class="text-white text-lg">🧪</span>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-800">Telemetry Simulator</h1>
+    </div>
+    <p class="text-gray-600 ml-13">Generate and monitor simulated telemetry data for testing</p>
+  </div>
 
-  <button (click)="startSimulation()" [disabled]="isRunning">Start Simulation</button>
-  <button (click)="stopSimulation()" [disabled]="!isRunning">Stop Simulation</button>
+  <!-- Control Panel -->
+  <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-gray-200">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
+        🎮 Simulation Controls
+      </h2>
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-3 rounded-full" [class]="isRunning ? 'bg-green-500 animate-pulse' : 'bg-gray-400'"></div>
+        <span class="text-sm font-medium" [class]="isRunning ? 'text-green-600' : 'text-gray-500'">
+          {{ isRunning ? 'Running' : 'Stopped' }}
+        </span>
+      </div>
+    </div>
+    
+    <div class="simulator-controls">
+      <button 
+        (click)="startSimulation()" 
+        [disabled]="isRunning"
+        class="btn-primary sim-btn"
+        [class.disabled]="isRunning"
+      >
+        ▶️ Start Simulation
+      </button>
+      <button 
+        (click)="stopSimulation()" 
+        [disabled]="!isRunning"
+        class="btn-secondary sim-btn"
+        [class.disabled]="!isRunning"
+      >
+        ⏹️ Stop Simulation
+      </button>
+      <div class="data-points-info">
+        <span class="font-medium">Data Points:</span>
+        <span class="data-points-count">{{ telemetryLog.length }}</span>
+      </div>
+    </div>
+  </div>
 
-  <h3>Live Data</h3>
-    <table class="data-table">
-        <thead>
-        <tr>
-            <th>Timestamp</th>
-            <th>Device ID</th>
-            <th>Voltage (V)</th>
-            <th>Current (A)</th>
-            <th>Power (W)</th>
-            <th>Energy (kWh)</th>
-        </tr>
+  <!-- Live Data Table -->
+  <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+      <h3 class="text-xl font-semibold text-white flex items-center gap-2">
+        📊 Live Telemetry Data
+        <span *ngIf="isRunning" class="text-xs bg-green-500 text-white px-2 py-1 rounded-full animate-pulse">LIVE</span>
+      </h3>
+    </div>
+    
+    <div *ngIf="telemetryLog.length === 0" class="p-12 text-center">
+      <div class="text-6xl mb-4 opacity-50">📡</div>
+      <h4 class="text-xl font-medium text-gray-600 mb-2">No data yet</h4>
+      <p class="text-gray-500">Start the simulation to see live telemetry data</p>
+    </div>
+    
+    <div *ngIf="telemetryLog.length > 0" class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th class="table-header">⏰ Timestamp</th>
+            <th class="table-header">🔌 Device ID</th>
+            <th class="table-header">⚡ Voltage (V)</th>
+            <th class="table-header">🔋 Current (A)</th>
+            <th class="table-header">💡 Power (W)</th>
+            <th class="table-header">📈 Energy (kWh)</th>
+          </tr>
         </thead>
-        <tbody>
-        <tr *ngFor="let entry of telemetryLog">
-            <td>{{ entry.timestamp | date:'medium' }}</td>
-            <td>{{ entry.deviceIdentifier }}</td>
-            <td>{{ entry.voltage | number:'1.2-2'}}</td>
-            <td>{{ entry.current | number:'1.2-2'}}</td>
-            <td>{{ entry.power | number:'1.2-2'}}</td>
-            <td>{{ entry.energy | number:'1.2-2'}}</td>
-        </tr>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let entry of telemetryLog; let i = index; trackBy: trackTelemetry" 
+              class="table-row"
+              [class.highlight-new]="i === 0 && isRunning">
+            <td class="table-cell font-mono text-sm">{{ entry.timestamp | date:'MMM d, HH:mm:ss' }}</td>
+            <td class="table-cell">
+              <span class="device-badge">{{ entry.deviceIdentifier }}</span>
+            </td>
+            <td class="table-cell font-mono" [class]="getValueClass(entry.voltage, 220, 0.1)">{{ entry.voltage | number:'1.1-1' }}</td>
+            <td class="table-cell font-mono" [class]="getValueClass(entry.current, 10, 0.2)">{{ entry.current | number:'1.1-1' }}</td>
+            <td class="table-cell font-mono font-bold" [class]="getPowerClass(entry.power)">{{ entry.power | number:'1.0-0' }}</td>
+            <td class="table-cell font-mono text-sm">{{ entry.energy | number:'1.3-3' }}</td>
+          </tr>
         </tbody>
-    </table>
+      </table>
+    </div>
+  </div>
 </div>
+

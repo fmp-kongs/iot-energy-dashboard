@@ -26,7 +26,19 @@ public class TelemetryController(InfluxDbService influxDbService) : ControllerBa
     [HttpGet("{deviceId}")]
     public async Task<IActionResult> GetTelemetry(string deviceId)
     {
-        return Ok();
+        var query = $@"
+            from(bucket: ""{_influxDbService.Bucket}"")
+              |> range(start: -3h)
+              |> filter(fn: (r) => r[""device_id""] == ""{deviceId}"")
+              |> filter(fn: (r) => r[""_measurement""] == ""device_telemetry"")
+              |> pivot(rowKey: [""_time""], columnKey: [""_field""], valueColumn: ""_value"")
+              |> keep(columns: [""_time"", ""voltage"", ""current"", ""power""])
+              |> sort(columns: [""_time""], desc: true)
+              |> limit(n: 100)
+        ";
+
+        var results = await _influxDbService.QueryTelemetryAsync(query);
+        return Ok(results);
     }
 
     [HttpPost("send-test")]

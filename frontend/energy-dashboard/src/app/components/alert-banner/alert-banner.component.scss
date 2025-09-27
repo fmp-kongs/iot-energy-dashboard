@@ -1,0 +1,21 @@
+.alert-banner {
+  background-color: #ff4d4f; // red
+  color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.alert-banner.info {
+  background-color: #1890ff; // blue
+}
+.alert-banner.warning {
+  background-color: #faad14; // orange
+}
+.alert-banner.success {
+  background-color: #52c41a; // green
+}
+.alert-banner.error {
+  background-color: #ff4d4f; // red
+}

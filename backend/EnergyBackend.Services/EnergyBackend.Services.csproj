@@ -1,8 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="4.0.2" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="4.0.2" />
+    <PackageReference Include="MQTTnet" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EnergyBackend.Domain\EnergyBackend.Domain.csproj" />
     <ProjectReference Include="..\EnergyBackend.Data\EnergyBackend.Data.csproj" />
+	<ProjectReference Include="..\EnergyBackend.Hubs\EnergyBackend.Hubs.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

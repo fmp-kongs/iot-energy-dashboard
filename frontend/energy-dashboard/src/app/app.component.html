@@ -1,35 +1,16 @@
-<header class="bg-gray-900 text-white p-4 flex gap-6">
-      <a 
-        routerLink="/dashboard" 
-        routerLinkActive="font-bold underline"
-        class="hover:text-blue-400"
-      >
-        Dashboard
-      </a>
-      <a 
-        routerLink="/device" 
-        routerLinkActive="font-bold underline"
-        class="hover:text-blue-400"
-      >
-        Devices
-      </a>
-      <a 
-        routerLink="/telemetry" 
-        routerLinkActive="font-bold underline"
-        class="hover:text-blue-400"
-      >
-        Send Telemetry
-      </a>
 
-      <a 
-        routerLink="/telemetry-simulator" 
-        routerLinkActive="font-bold underline"
-        class="hover:text-blue-400"
-      >
-        Telemetry Simulator
-      </a>
-    </header>
 
-    <main class="p-6">
-      <router-outlet></router-outlet>
-    </main>
+
+<header class="simple-navbar">
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/device" routerLinkActive="active">Devices</a>
+    <a routerLink="/telemetry" routerLinkActive="active">Send Data</a>
+    <a routerLink="/telemetry-simulator" routerLinkActive="active">Simulator</a>
+  </nav>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
